@@ -102,7 +102,7 @@ footer{padding:32px 0;color:var(--muted);font-size:.9rem;border-top:1px solid va
     <!-- To use your photo: replace the line below with <img src="..." alt="Mohamed Yassine Fattoum"> -->
     <span>Your portrait goes here</span>
     <span class="tag">engineer · 0.98</span>
-  </div>
+</div>
 </header>
 
 <section id="about">
@@ -198,7 +198,15 @@ const P=[
 ];
 /* MEDIA: add your files per project (same order as above). Example:
    M[0]={cover:"images/flexibowl-cover.jpg",photos:["images/flexibowl-1.jpg","images/flexibowl-2.jpg"],videos:["videos/flexibowl-demo.mp4"]} */
-const M=P.map(()=>({cover:"",photos:[],videos:[]}));
+const M = P.map(() => ({
+    cover: "images/3.jpg",
+    photos: [
+        "images/3.jpg",
+        "images/3.jpg",
+        "images/3.jpg"
+    ],
+    videos: ["videos/vid1.mp4"]
+}));
 const cover=x=>x.m.cover?`<div class="shot"><img src="${x.m.cover}" alt="${x.t}" loading="lazy"></div>`:`<div class="shot"><span>Cover photo<br>(add a photo here)</span></div>`;
 const media=x=>{const ph=x.m.photos.map(s=>`<button class="ph" data-src="${s}" aria-label="Enlarge photo"><img src="${s}" alt="${x.t}" loading="lazy"></button>`).join('');
 const vd=x.m.videos.map(s=>`<video controls preload="metadata" playsinline src="${s}"></video>`).join('');
