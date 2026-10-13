@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mohamed Yassine Fattoum — Industrial Machine Vision Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F2F5F8;--surface:#FFFFFF;--ink:#13233B;--muted:#55657C;--line:#D5DDE7;--blue:#1F4E9C;--roi:#E8870C;--ok:#1E8A5A;
+--head:'Bricolage Grotesque','Segoe UI',Arial,sans-serif;--body:'Instrument Sans','Segoe UI',Arial,sans-serif;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0E1726;--surface:#16233A;--ink:#E8EEF7;--muted:#9FB0C7;--line:#2A3B57;--blue:#7FA8F0;--roi:#F5A640;--ok:#4CC590}}
+:root[data-theme="dark"]{--bg:#0E1726;--surface:#16233A;--ink:#E8EEF7;--muted:#9FB0C7;--line:#2A3B57;--blue:#7FA8F0;--roi:#F5A640;--ok:#4CC590}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.6 var(--body)}
+a{color:var(--blue)}
+:focus-visible{outline:3px solid var(--roi);outline-offset:3px}
+.wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+nav{display:flex;gap:22px;justify-content:flex-end;padding:20px 0;font-weight:500;flex-wrap:wrap}
+nav a{color:var(--muted);text-decoration:none}nav a:hover{color:var(--ink)}
+.hero{display:grid;grid-template-columns:1.25fr 1fr;gap:56px;align-items:center;padding:24px 0 80px}
+h1{font:800 clamp(2.6rem,6vw,4.4rem)/1 var(--head);letter-spacing:-.03em;margin:0 0 18px}
+.role{font:500 1.35rem/1.35 var(--head);color:var(--blue);margin:0 0 20px}
+.lead{max-width:34em;color:var(--muted);margin:0 0 28px}
+.btns{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-block;padding:12px 22px;border-radius:6px;font-weight:600;text-decoration:none;border:2px solid var(--ink);color:var(--ink)}
+.btn.main{background:var(--ink);color:var(--bg)}
+.frame{position:relative;aspect-ratio:4/5;background:var(--surface);border:1px solid var(--line);display:grid;place-items:center;color:var(--muted);text-align:center;padding:30px;font-size:.95rem}
+.frame::before,.frame::after{content:"";position:absolute;width:34px;height:34px;border:4px solid var(--roi)}
+.frame::before{top:-10px;left:-10px;border-right:0;border-bottom:0}
+.frame::after{bottom:-10px;right:-10px;border-left:0;border-top:0}
+.frame .tag{position:absolute;left:-10px;bottom:-44px;background:var(--roi);color:#1b1200;font:600 .85rem/1 var(--body);padding:7px 10px}
+.frame img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+section{padding:72px 0;border-top:1px solid var(--line)}
+h2{font:800 clamp(1.8rem,4vw,2.6rem)/1.1 var(--head);letter-spacing:-.02em;margin:0 0 36px}
+.about{display:grid;grid-template-columns:1.4fr 1fr;gap:48px}
+.about p{margin:0 0 16px;max-width:38em}
+.facts{display:grid;gap:14px;align-content:start}
+.facts div{border-left:4px solid var(--blue);padding:2px 0 2px 16px}
+.facts b{display:block;font:700 1.15rem var(--head)}
+.facts span{color:var(--muted);font-size:.95rem}
+.job{display:grid;grid-template-columns:190px 1fr;gap:12px 36px;padding-bottom:36px}
+.job .when{color:var(--muted);font-weight:500}
+.job h3{font:700 1.3rem var(--head);margin:0}
+.job .org{color:var(--blue);font-weight:600;margin:2px 0 14px}
+.job ul{margin:0 0 14px;padding-left:20px}.job li{margin-bottom:8px;max-width:46em}
+.lead-note{background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--roi);padding:14px 18px;max-width:46em}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:24px}
+.card{background:var(--surface);border:1px solid var(--line);display:flex;flex-direction:column}
+.shot{aspect-ratio:16/10;border-bottom:1px solid var(--line);display:grid;place-items:center;color:var(--muted);font-size:.9rem;text-align:center;padding:16px;position:relative;
+background:repeating-linear-gradient(45deg,transparent 0 12px,color-mix(in srgb,var(--line) 45%,transparent) 12px 13px)}
+.shot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.card .body{padding:20px;display:flex;flex-direction:column;gap:10px;flex:1}
+.card h3{font:700 1.2rem/1.25 var(--head);margin:0}
+.meta{color:var(--muted);font-size:.92rem;margin:0}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chips span{font-size:.82rem;font-weight:500;border:1px solid var(--line);padding:2px 9px;border-radius:99px;color:var(--muted)}
+details{margin-top:auto;border-top:1px solid var(--line);padding-top:12px}
+summary{cursor:pointer;font-weight:600;color:var(--blue)}
+details dl{margin:12px 0 0}details dt{font-weight:600;margin-top:10px}details dd{margin:2px 0 0;color:var(--muted);font-size:.96rem}
+.todo{color:var(--roi);font-weight:600}
+.skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:28px}
+.skills h3{font:700 1.05rem var(--head);margin:0 0 10px;color:var(--blue)}
+.skills p{margin:0;color:var(--muted)}
+.edu{display:grid;grid-template-columns:130px 1fr;gap:6px 28px}
+.edu .when{color:var(--muted);font-weight:500}.edu p{margin:0 0 16px}
+.contact a.big{font:700 clamp(1.3rem,3.6vw,2.2rem) var(--head);word-break:break-all}
+.contact ul{list-style:none;padding:0;margin:24px 0 0;display:grid;gap:6px;color:var(--muted)}
+.ci{list-style:none;padding:0;margin:0;display:grid;gap:18px}
+.ci li{display:flex;align-items:center;gap:16px;font-size:1.15rem}
+.ci svg{width:26px;height:26px;flex:none;stroke:var(--blue);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.ci a{color:var(--ink);text-underline-offset:3px}
+.media{margin:14px 0 4px;display:grid;gap:10px}
+.mg{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.ph{padding:0;border:0;background:none;cursor:zoom-in;aspect-ratio:4/3;overflow:hidden}
+.ph img{width:100%;height:100%;object-fit:cover;display:block}
+.slot{aspect-ratio:4/3;border:1px dashed var(--line);display:grid;place-items:center;font-size:.8rem;color:var(--muted);text-align:center;padding:4px}
+.slot.v{grid-column:1/-1;aspect-ratio:16/9}
+.mv{display:grid;gap:8px}.mv video{width:100%;aspect-ratio:16/9;background:#000;display:block}
+dialog{border:0;padding:0;background:transparent;max-width:92vw}
+dialog img{max-width:92vw;max-height:88vh;display:block}
+dialog::backdrop{background:rgba(0,0,0,.82)}
+footer{padding:32px 0;color:var(--muted);font-size:.9rem;border-top:1px solid var(--line)}
+@media (max-width:760px){.hero,.about,.job,.edu{grid-template-columns:1fr}.frame{max-width:340px}.frame .tag{bottom:-40px}.hero{gap:60px}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<nav aria-label="Main"><a href="#about">About</a><a href="#experience">Experience</a><a href="#projects">Projects</a><a href="#skills">Skills</a><a href="#contact">Contact</a></nav>
+
+<header class="hero">
+  <div>
+    <h1>Mohamed Yassine Fattoum</h1>
+    <p class="role">Software engineer Specialized in industrial machine vision</p>
+    <p class="lead">I build the software that lets cameras decide whether a part is good: C++ vision libraries, C# inspection software and AI models, taken from feasibility study to validation on the customer's production line. Based in Karlsruhe, open to new roles.</p>
+    <div class="btns"><a class="btn main" href="#projects">See my projects</a><a class="btn" href="mailto:mohamedyassinefattoum@gmail.com">Get in touch</a></div>
+  </div>
+  <div class="frame" role="img" aria-label="Portrait placeholder">
+    <!-- To use your photo: replace the line below with <img src="..." alt="Mohamed Yassine Fattoum"> -->
+    <span>Your portrait goes here</span>
+    <span class="tag">engineer · 0.98</span>
+  </div>
+</header>
+
+<section id="about">
+  <h2>About</h2>
+  <div class="about">
+    <div>
+      <p>I'm a software development engineer with three years of experience in industrial machine vision. I trained as an electrical engineer at ENSIT in Tunis and have worked at ARMA since my internship in 2023.</p>
+      <p>My projects span the automotive and textile sectors. I work across the whole chain: optics and camera calibration, image-processing code, PLC and database integration, and on-site acceptance with the customer.</p>
+      <p>I'm now looking for new professional challenges in Germany, where I'd like to bring this end-to-end experience to a team building inspection and automation systems.</p>
+    </div>
+    <div class="facts">
+      <div><b>3 years</b><span>in industrial machine vision</span></div>
+      <div><b>6 inspection machines</b><span>delivered for automotive customers</span></div>
+      <div><b>4+ projects led</b><span>as technical lead, with interns supervised</span></div>
+      <div><b>4 languages</b><span>Arabic, English, French, German (B1)</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <h2>Experience</h2>
+  <div class="job">
+    <div class="when">Oct. 2023 – Sep. 2026<br>Megrine, Tunis</div>
+    <div>
+      <h3>Software Development Engineer</h3>
+      <p class="org">ARMA</p>
+      <ul>
+        <li>Develop and improve an OpenCV-based C++ library for industrial image processing: new features, performance optimisation, Git/GitLab workflow with Agile Scrum.</li>
+        <li>Built a C# interface that integrates the vision library, manages inspection scenarios and handles JSON serialisation.</li>
+        <li>Built a modular C/LabWindows™ CVI user interface (ATP platform) to control test machines, coordinating image processing, PLCs, MySQL databases and production equipment.</li>
+        <li>Integrated vision systems from Keyence, Cognex and Basler: optical calibration, vision-tool setup, job files in In-Sight Explorer and IV Navigator.</li>
+        <li>Developed AI modules in the XVision library with OpenCV DNN: ONNX models for classification, segmentation and object detection, integrated into C# inference pipelines.</li>
+      </ul>
+      <div class="lead-note"><b>Technical lead on 4+ industrial projects:</b> team management, intern supervision, feasibility studies, support through industrialisation and on-site functional validation at the customer.</div>
+    </div>
+  </div>
+  <div class="job">
+    <div class="when">Feb. 2023 – Sep. 2023<br>Megrine, Tunis</div>
+    <div>
+      <h3>Software Engineering Intern</h3>
+      <p class="org">ARMA</p>
+      <ul><li>Developed an OpenCV-based library for industrial image inspection: acquisition, processing and inspection.</li></ul>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <h2>Projects</h2>
+  <p class="meta" style="margin:-20px 0 28px;max-width:44em">Six quality-inspection machines delivered for automotive customers. Open a card for details. Orange text marks what you should replace with your own facts and photos.</p>
+  <div class="grid" id="grid"></div>
+</section>
+
+<section id="skills">
+  <h2>Skills</h2>
+  <div class="skills">
+    <div><h3>Programming</h3><p>C, C++, C#, Python, CMake, MySQL</p></div>
+    <div><h3>Vision and AI</h3><p>OpenCV, OpenCV DNN, ONNX models, Cognex In-Sight Explorer, Keyence IV Navigator, NI Vision Builder, LabVIEW</p></div>
+    <div><h3>Tools and practice</h3><p>Visual Studio, VS Code, LabWindows/CVI, Git, GitLab, Agile Scrum, CI/CD</p></div>
+    <div><h3>Hardware and systems</h3><p>Cognex, Keyence and Basler cameras, PLCs, Windows, Linux</p></div>
+  </div>
+</section>
+
+<section id="education">
+  <h2>Education</h2>
+  <div class="edu">
+    <div class="when">2020 – 2023</div><p><b>Engineering Degree in Electrical Engineering</b><br>National School of Engineering Sciences of Tunis (ENSIT)</p>
+    <div class="when">2018 – 2020</div><p><b>Preparatory Engineering Studies</b><br>Preparatory Institute for Engineering Studies of El Manar (IPEIEM)</p>
+    <div class="when">2018</div><p><b>Baccalaureate in Technical Sciences</b><br>Ibn Abi Dhief High School, Manouba</p>
+  </div>
+</section>
+
+<section id="contact" class="contact">
+  <h2>Let's talk</h2>
+  <ul class="ci">
+    <li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg><a href="mailto:mohamedyassinefattoum@gmail.com">mohamedyassinefattoum@gmail.com</a></li>
+    <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg><span>Scheffelstrasse 44B, Karlsruhe, Germany</span></li>
+    <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg><a href="tel:+491796947902">+49 179 6947902</a></li>
+    <li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="2"/><circle cx="8" cy="11" r="2"/><path d="M5 16c.5-2 5.5-2 6 0M14 10h5M14 14h4"/></svg><span>Driving licence: Class B</span></li>
+    <li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 11v5M8 8v.01M12 16v-5M12 13a3 3 0 0 1 6 0v3"/></svg><a href="https://linkedin.com/in/mohamed-yassine-fattoum">linkedin.com/in/mohamed-yassine-fattoum</a></li>
+  </ul>
+</section>
+<footer>© 2026 Mohamed Yassine Fattoum</footer>
+</div>
+
+<script>
+const P=[
+{t:"FlexiBowl machine vision & robotics",c:"Aptiv, Morocco",d:"Mar. – Jul. 2026",s:["C++","C#","OpenCV","Robotics"],p:"Quality inspection machine combining machine vision with a FlexiBowl flexible feeder and robotics."},
+{t:"Seat heating resistance wires",c:"Lear, Bizerte, Tunisia",d:"Sep. 2025 – Feb. 2026",s:["C++","OpenCV","PLC","MySQL"],p:"Quality inspection machine for the resistance wires of automotive seat heating."},
+{t:"LCV Carrier",c:"Lacroix, Zaghouan, Tunisia",d:"Sep. – Dec. 2025",s:["C++","OpenCV","C#"],p:"Quality inspection machine for an LCV carrier part."},
+{t:"LED tail light, Toyota C-HR 2025",c:"Lacroix, Zaghouan, Tunisia",d:"May – Jul. 2025",s:["C++","OpenCV","Vision tools"],p:"Quality inspection machine for the LED tail light of the 2025 Toyota C-HR."},
+{t:"Automotive connector",c:"Aptiv, Morocco",d:"2024",s:["C++","OpenCV","LabWindows/CVI"],p:"Quality inspection machine for an automotive connector."},
+{t:"Automatic gearbox housing",c:"Etoggle / PSA / Valeo, Tunisia",d:"Nov. 2023 – Feb. 2024",s:["C++","OpenCV","Cognex"],p:"Quality inspection machine for an automatic gearbox housing."}
+];
+/* MEDIA: add your files per project (same order as above). Example:
+   M[0]={cover:"images/flexibowl-cover.jpg",photos:["images/flexibowl-1.jpg","images/flexibowl-2.jpg"],videos:["videos/flexibowl-demo.mp4"]} */
+const M=P.map(()=>({cover:"",photos:[],videos:[]}));
+const cover=x=>x.m.cover?`<div class="shot"><img src="${x.m.cover}" alt="${x.t}" loading="lazy"></div>`:`<div class="shot"><span>Cover photo<br>(add a photo here)</span></div>`;
+const media=x=>{const ph=x.m.photos.map(s=>`<button class="ph" data-src="${s}" aria-label="Enlarge photo"><img src="${s}" alt="${x.t}" loading="lazy"></button>`).join('');
+const vd=x.m.videos.map(s=>`<video controls preload="metadata" playsinline src="${s}"></video>`).join('');
+return `<div class="media"><div class="mg">${ph||'<div class="slot">Photo 1</div><div class="slot">Photo 2</div><div class="slot">Photo 3</div>'}</div><div class="mv">${vd||'<div class="slot v">Video sequence (MP4)</div>'}</div></div>`};
+const dlg=document.createElement('dialog');dlg.innerHTML='<img alt="">';document.body.appendChild(dlg);
+dlg.addEventListener('click',()=>dlg.close());
+document.addEventListener('click',e=>{const b=e.target.closest('.ph');if(b){dlg.firstChild.src=b.dataset.src;dlg.showModal()}});
+const g=document.getElementById('grid');
+P.forEach((x,i)=>{x.m=M[i];const a=document.createElement('article');a.className='card';
+a.innerHTML=`${cover(x)}
+<div class="body"><h3>${x.t}</h3><p class="meta">${x.c} · ${x.d}</p><p style="margin:0">${x.p}</p>
+<div class="chips">${x.s.map(k=>`<span>${k}</span>`).join('')}</div>
+<details><summary>Project details</summary>${media(x)}<dl>
+<dt>The challenge</dt><dd class="todo">What defect or measurement had to be detected, and what made it hard (reflections, cycle time, tolerances)?</dd>
+<dt>My role</dt><dd>Technical lead or developer: vision software, tool setup, integration with PLCs and production equipment, on-site validation. <span class="todo">Adjust to this project.</span></dd>
+<dt>Solution</dt><dd class="todo">Camera and lighting setup, algorithms or AI model used, how results reach the operator.</dd>
+<dt>Result</dt><dd class="todo">Add a measurable outcome: detection rate, cycle time, defects caught.</dd>
+</dl></details></div>`;g.appendChild(a)});
+</script>
+</body>
+</html>
