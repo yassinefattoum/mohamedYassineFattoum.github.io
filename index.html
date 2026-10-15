@@ -600,7 +600,7 @@ footer{
 
   <div class="frame" role="img" aria-label="Portrait of Mohamed Yassine Fattoum">
     <img
-      src="image/yassine_photo.jpg"
+      src="images/yassine_photo.jpg"
       alt="Mohamed Yassine Fattoum"
       fetchpriority="high"
     >
@@ -913,21 +913,21 @@ const P = [
  */
 const M = [
   {
-    cover: "image/flexiBowl.jpeg",
+    cover: "images/flexiBowl.jpeg",
     photos: [],
     videos: []
   },
   {
-    cover: "image/lineUp.png",
+    cover: "images/lineUp.png",
     photos: [
-      "image/lineUp2.jpeg"
+      "images/lineUp2.jpeg"
     ],
     videos: [
       "videos/line.mp4"
     ]
   },
   {
-    cover: "image/lcv.jpeg",
+    cover: "images/lcv.jpeg",
     photos: [],
     videos: []
   },
@@ -939,12 +939,12 @@ const M = [
     ]
   },
   {
-    cover: "image/w46.jpeg",
+    cover: "images/w46.jpeg",
     photos: [],
     videos: []
   },
   {
-    cover: "image/psa.png",
+    cover: "images/psa.png",
     photos: [],
     videos: []
   }
@@ -980,7 +980,7 @@ const cover = x => {
           playsinline
           aria-label="${x.t} project video"
         >
-          <source src="${x.m.videos[0]}" type="video/mp4">
+          <source src="${x.m.videos[0]}" type="videos/mp4">
           Your browser does not support HTML video.
         </video>
       </div>
@@ -1023,7 +1023,7 @@ const media = x => {
         preload="metadata"
         playsinline
       >
-        <source src="${src}" type="video/mp4">
+        <source src="${src}" type="videos/mp4">
         Your browser does not support HTML video.
       </video>
     `)
