@@ -1,1144 +1,713 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="en" data-theme="light">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Mohamed Yassine Fattoum — Industrial Machine Vision Engineer</title>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-
-<style>
-:root{
-  --bg:#F2F5F8;
-  --surface:#FFFFFF;
-  --ink:#13233B;
-  --muted:#55657C;
-  --line:#D5DDE7;
-  --blue:#1F4E9C;
-  --roi:#E8870C;
-  --ok:#1E8A5A;
-  --head:'Bricolage Grotesque','Segoe UI',Arial,sans-serif;
-  --body:'Instrument Sans','Segoe UI',Arial,sans-serif;
-  box-sizing:border-box;
-  padding-top:env(safe-area-inset-top,0px);
-  padding-bottom:env(safe-area-inset-bottom,0px);
-}
-
-@media (prefers-color-scheme:dark){
-  :root:not([data-theme="light"]){
-    --bg:#0E1726;
-    --surface:#16233A;
-    --ink:#E8EEF7;
-    --muted:#9FB0C7;
-    --line:#2A3B57;
-    --blue:#7FA8F0;
-    --roi:#F5A640;
-    --ok:#4CC590;
-  }
-}
-
-:root[data-theme="dark"]{
-  --bg:#0E1726;
-  --surface:#16233A;
-  --ink:#E8EEF7;
-  --muted:#9FB0C7;
-  --line:#2A3B57;
-  --blue:#7FA8F0;
-  --roi:#F5A640;
-  --ok:#4CC590;
-}
-
-html{
-  scroll-padding-top:env(safe-area-inset-top,0px);
-  scroll-behavior:smooth;
-}
-
-*,*::before,*::after{
-  box-sizing:border-box;
-}
-
-body{
-  margin:0;
-  background:var(--bg);
-  color:var(--ink);
-  font:400 17px/1.6 var(--body);
-}
-
-a{
-  color:var(--blue);
-}
-
-:focus-visible{
-  outline:3px solid var(--roi);
-  outline-offset:3px;
-}
-
-.wrap{
-  max-width:1040px;
-  margin:0 auto;
-  padding:0 24px;
-}
-
-nav{
-  display:flex;
-  gap:22px;
-  justify-content:flex-end;
-  padding:20px 0;
-  font-weight:500;
-  flex-wrap:wrap;
-}
-
-nav a{
-  color:var(--muted);
-  text-decoration:none;
-}
-
-nav a:hover{
-  color:var(--ink);
-}
-
-.hero{
-  display:grid;
-  grid-template-columns:1.25fr 1fr;
-  gap:56px;
-  align-items:center;
-  padding:24px 0 80px;
-}
-
-h1{
-  font:800 clamp(2.6rem,6vw,4.4rem)/1 var(--head);
-  letter-spacing:-.03em;
-  margin:0 0 18px;
-}
-
-.role{
-  font:500 1.35rem/1.35 var(--head);
-  color:var(--blue);
-  margin:0 0 20px;
-}
-
-.lead{
-  max-width:34em;
-  color:var(--muted);
-  margin:0 0 28px;
-}
-
-.btns{
-  display:flex;
-  gap:12px;
-  flex-wrap:wrap;
-}
-
-.btn{
-  display:inline-block;
-  padding:12px 22px;
-  border-radius:6px;
-  font-weight:600;
-  text-decoration:none;
-  border:2px solid var(--ink);
-  color:var(--ink);
-}
-
-.btn.main{
-  background:var(--ink);
-  color:var(--bg);
-}
-
-.frame{
-  position:relative;
-  aspect-ratio:4/5;
-  background:var(--surface);
-  border:1px solid var(--line);
-  display:grid;
-  place-items:center;
-  color:var(--muted);
-  text-align:center;
-  padding:30px;
-  font-size:.95rem;
-}
-
-.frame::before,
-.frame::after{
-  content:"";
-  position:absolute;
-  width:34px;
-  height:34px;
-  border:4px solid var(--roi);
-  z-index:2;
-  pointer-events:none;
-}
-
-.frame::before{
-  top:-10px;
-  left:-10px;
-  border-right:0;
-  border-bottom:0;
-}
-
-.frame::after{
-  bottom:-10px;
-  right:-10px;
-  border-left:0;
-  border-top:0;
-}
-
-.frame .tag{
-  position:absolute;
-  left:-10px;
-  bottom:-44px;
-  background:var(--roi);
-  color:#1b1200;
-  font:600 .85rem/1 var(--body);
-  padding:7px 10px;
-  z-index:3;
-}
-
-.frame img{
-  position:absolute;
-  inset:0;
-  width:100%;
-  height:100%;
-  object-fit:cover;
-}
-
-section{
-  padding:72px 0;
-  border-top:1px solid var(--line);
-}
-
-h2{
-  font:800 clamp(1.8rem,4vw,2.6rem)/1.1 var(--head);
-  letter-spacing:-.02em;
-  margin:0 0 36px;
-}
-
-.about{
-  display:grid;
-  grid-template-columns:1.4fr 1fr;
-  gap:48px;
-}
-
-.about p{
-  margin:0 0 16px;
-  max-width:38em;
-}
-
-.facts{
-  display:grid;
-  gap:14px;
-  align-content:start;
-}
-
-.facts div{
-  border-left:4px solid var(--blue);
-  padding:2px 0 2px 16px;
-}
-
-.facts b{
-  display:block;
-  font:700 1.15rem var(--head);
-}
-
-.facts span{
-  color:var(--muted);
-  font-size:.95rem;
-}
-
-.job{
-  display:grid;
-  grid-template-columns:190px 1fr;
-  gap:12px 36px;
-  padding-bottom:36px;
-}
-
-.job .when{
-  color:var(--muted);
-  font-weight:500;
-}
-
-.job h3{
-  font:700 1.3rem var(--head);
-  margin:0;
-}
-
-.job .org{
-  color:var(--blue);
-  font-weight:600;
-  margin:2px 0 14px;
-}
-
-.job ul{
-  margin:0 0 14px;
-  padding-left:20px;
-}
-
-.job li{
-  margin-bottom:8px;
-  max-width:46em;
-}
-
-.lead-note{
-  background:var(--surface);
-  border:1px solid var(--line);
-  border-left:4px solid var(--roi);
-  padding:14px 18px;
-  max-width:46em;
-}
-
-.grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(300px,1fr));
-  gap:24px;
-}
-
-.card{
-  background:var(--surface);
-  border:1px solid var(--line);
-  display:flex;
-  flex-direction:column;
-  min-width:0;
-}
-
-.shot{
-  aspect-ratio:16/10;
-  border-bottom:1px solid var(--line);
-  display:grid;
-  place-items:center;
-  color:var(--muted);
-  font-size:.9rem;
-  text-align:center;
-  padding:16px;
-  position:relative;
-  background:repeating-linear-gradient(
-    45deg,
-    transparent 0 12px,
-    color-mix(in srgb,var(--line) 45%,transparent) 12px 13px
-  );
-  overflow:hidden;
-}
-
-.shot img,
-.shot video{
-  position:absolute;
-  inset:0;
-  width:100%;
-  height:100%;
-  object-fit:cover;
-}
-
-.shot video{
-  background:#000;
-}
-
-.card .body{
-  padding:20px;
-  display:flex;
-  flex-direction:column;
-  gap:10px;
-  flex:1;
-}
-
-.card h3{
-  font:700 1.2rem/1.25 var(--head);
-  margin:0;
-}
-
-.meta{
-  color:var(--muted);
-  font-size:.92rem;
-  margin:0;
-}
-
-.chips{
-  display:flex;
-  flex-wrap:wrap;
-  gap:6px;
-}
-
-.chips span{
-  font-size:.82rem;
-  font-weight:500;
-  border:1px solid var(--line);
-  padding:2px 9px;
-  border-radius:99px;
-  color:var(--muted);
-}
-
-details{
-  margin-top:auto;
-  border-top:1px solid var(--line);
-  padding-top:12px;
-}
-
-summary{
-  cursor:pointer;
-  font-weight:600;
-  color:var(--blue);
-}
-
-details dl{
-  margin:12px 0 0;
-}
-
-details dt{
-  font-weight:600;
-  margin-top:10px;
-}
-
-details dd{
-  margin:2px 0 0;
-  color:var(--muted);
-  font-size:.96rem;
-}
-
-.todo{
-  color:var(--roi);
-  font-weight:600;
-}
-
-.skills{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-  gap:28px;
-}
-
-.skills h3{
-  font:700 1.05rem var(--head);
-  margin:0 0 10px;
-  color:var(--blue);
-}
-
-.skills p{
-  margin:0;
-  color:var(--muted);
-}
-
-.edu{
-  display:grid;
-  grid-template-columns:130px 1fr;
-  gap:6px 28px;
-}
-
-.edu .when{
-  color:var(--muted);
-  font-weight:500;
-}
-
-.edu p{
-  margin:0 0 16px;
-}
-
-.contact a.big{
-  font:700 clamp(1.3rem,3.6vw,2.2rem) var(--head);
-  word-break:break-all;
-}
-
-.contact ul{
-  list-style:none;
-  padding:0;
-  margin:24px 0 0;
-  display:grid;
-  gap:6px;
-  color:var(--muted);
-}
-
-.ci{
-  list-style:none;
-  padding:0;
-  margin:0;
-  display:grid;
-  gap:18px;
-}
-
-.ci li{
-  display:flex;
-  align-items:center;
-  gap:16px;
-  font-size:1.15rem;
-}
-
-.ci svg{
-  width:26px;
-  height:26px;
-  flex:none;
-  stroke:var(--blue);
-  fill:none;
-  stroke-width:1.8;
-  stroke-linecap:round;
-  stroke-linejoin:round;
-}
-
-.ci a{
-  color:var(--ink);
-  text-underline-offset:3px;
-}
-
-.media{
-  margin:14px 0 4px;
-  display:grid;
-  gap:10px;
-}
-
-.mg{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
-  gap:8px;
-}
-
-.ph{
-  padding:0;
-  border:0;
-  background:none;
-  cursor:zoom-in;
-  aspect-ratio:4/3;
-  overflow:hidden;
-}
-
-.ph img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  display:block;
-}
-
-.mv{
-  display:grid;
-  gap:8px;
-}
-
-.mv video{
-  width:100%;
-  aspect-ratio:16/9;
-  background:#000;
-  display:block;
-  border:1px solid var(--line);
-}
-
-dialog{
-  border:0;
-  padding:0;
-  background:transparent;
-  max-width:92vw;
-}
-
-dialog img{
-  max-width:92vw;
-  max-height:88vh;
-  display:block;
-}
-
-dialog::backdrop{
-  background:rgba(0,0,0,.82);
-}
-
-footer{
-  padding:32px 0;
-  color:var(--muted);
-  font-size:.9rem;
-  border-top:1px solid var(--line);
-}
-
-@media (max-width:760px){
-  .hero,
-  .about,
-  .job,
-  .edu{
-    grid-template-columns:1fr;
-  }
-
-  .frame{
-    max-width:340px;
-  }
-
-  .frame .tag{
-    bottom:-40px;
-  }
-
-  .hero{
-    gap:60px;
-  }
-}
-
-@media (prefers-reduced-motion:reduce){
-  html{
-    scroll-behavior:auto;
-  }
-}
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f4f7fb">
+  <meta name="description" content="Mohamed Yassine Fattoum — software engineer focused on industrial machine vision, C++/OpenCV, C# inspection software and AI-assisted quality control. Based in Karlsruhe, Germany.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Mohamed Yassine Fattoum | Industrial Machine Vision Engineer">
+  <meta property="og:description" content="Industrial machine vision, inspection software, computer vision and automation.">
+  <title>Mohamed Yassine Fattoum — Industrial Machine Vision Engineer</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      color-scheme: light;
+      --page: #f4f7fb;
+      --surface: #ffffff;
+      --surface-soft: #edf2f8;
+      --ink: #14243b;
+      --muted: #5b6b82;
+      --line: #d9e1eb;
+      --blue: #2055a5;
+      --blue-strong: #164383;
+      --orange: #ef9827;
+      --green: #18855c;
+      --shadow: 0 18px 50px rgba(23, 45, 78, .09);
+      --radius: 20px;
+      --content: 1160px;
+      --font: 'Manrope', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      --mono: 'DM Mono', ui-monospace, SFMono-Regular, Consolas, monospace;
+    }
+
+    :root[data-theme="dark"] {
+      color-scheme: dark;
+      --page: #0c1422;
+      --surface: #121f32;
+      --surface-soft: #182941;
+      --ink: #edf3fc;
+      --muted: #a6b5c9;
+      --line: #2a3b55;
+      --blue: #8ab4ff;
+      --blue-strong: #b1ceff;
+      --orange: #ffb64f;
+      --green: #69d9ad;
+      --shadow: 0 18px 50px rgba(0, 0, 0, .22);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 100px; }
+    body { margin: 0; background: var(--page); color: var(--ink); font: 400 16px/1.7 var(--font); -webkit-font-smoothing: antialiased; }
+    body, button, input { font-family: var(--font); }
+    img, video { max-width: 100%; }
+    a { color: var(--blue); text-underline-offset: 4px; }
+    a:hover { color: var(--blue-strong); }
+    button, input { font: inherit; }
+    button { color: inherit; }
+    button:focus-visible, a:focus-visible, input:focus-visible, summary:focus-visible { outline: 3px solid var(--orange); outline-offset: 4px; }
+    ::selection { background: var(--orange); color: #1d2430; }
+
+    .container { width: min(var(--content), calc(100% - 48px)); margin-inline: auto; }
+    .skip-link { position: absolute; z-index: 1000; top: 8px; left: 8px; padding: 10px 14px; transform: translateY(-150%); border-radius: 10px; color: white; background: #14243b; }
+    .skip-link:focus { transform: translateY(0); }
+
+    .site-header { position: sticky; top: 0; z-index: 50; border-bottom: 1px solid color-mix(in srgb, var(--line) 78%, transparent); background: color-mix(in srgb, var(--page) 90%, transparent); backdrop-filter: blur(18px); }
+    .nav-wrap { min-height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 22px; }
+    .brand { display: inline-flex; align-items: center; gap: 12px; color: var(--ink); text-decoration: none; min-width: max-content; }
+    .brand-mark { width: 39px; height: 39px; display: grid; place-items: center; background: var(--ink); color: var(--page); border-radius: 12px; font-weight: 800; letter-spacing: -.06em; }
+    .brand-copy { display: grid; line-height: 1.2; }
+    .brand-copy strong { font-size: .92rem; font-weight: 800; }
+    .brand-copy span { margin-top: 4px; color: var(--muted); font: .64rem var(--mono); letter-spacing: .09em; text-transform: uppercase; }
+    .nav-links { display: flex; align-items: center; justify-content: flex-end; gap: clamp(12px, 2.3vw, 28px); }
+    .nav-links a { color: var(--muted); text-decoration: none; font-size: .86rem; font-weight: 700; white-space: nowrap; }
+    .nav-links a:hover { color: var(--ink); }
+    .theme-toggle { width: 42px; height: 42px; flex: 0 0 auto; border: 1px solid var(--line); border-radius: 50%; background: var(--surface); cursor: pointer; display: grid; place-items: center; font-size: 1.1rem; }
+
+    .hero { display: grid; grid-template-columns: minmax(0, 1.22fr) minmax(300px, .78fr); gap: clamp(42px, 7vw, 100px); align-items: center; padding-block: clamp(54px, 8vw, 105px) clamp(76px, 10vw, 132px); }
+    .eyebrow { display: flex; align-items: center; gap: 10px; margin: 0 0 22px; color: var(--blue); font: 500 .76rem var(--mono); letter-spacing: .09em; text-transform: uppercase; }
+    .status-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green); box-shadow: 0 0 0 5px color-mix(in srgb, var(--green) 14%, transparent); }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 { max-width: 790px; margin-bottom: 20px; font-size: clamp(2.8rem, 6.6vw, 5.8rem); font-weight: 800; line-height: .99; letter-spacing: -.075em; }
+    h1 .accent { color: var(--blue); }
+    .hero-role { max-width: 630px; margin-bottom: 18px; font-size: clamp(1.12rem, 2vw, 1.48rem); font-weight: 700; line-height: 1.5; }
+    .hero-copy { max-width: 650px; margin-bottom: 28px; color: var(--muted); font-size: 1.02rem; }
+    .button-row { display: flex; gap: 12px; flex-wrap: wrap; }
+    .button { display: inline-flex; align-items: center; justify-content: center; gap: 9px; min-height: 48px; padding: 12px 18px; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); color: var(--ink); text-decoration: none; font-size: .9rem; font-weight: 800; cursor: pointer; transition: transform .18s ease, border-color .18s ease, background .18s ease; }
+    .button:hover { transform: translateY(-2px); border-color: var(--blue); color: var(--ink); }
+    .button.primary { background: var(--ink); border-color: var(--ink); color: var(--page); }
+    .button.primary:hover { background: var(--blue-strong); border-color: var(--blue-strong); color: white; }
+    .button.small { min-height: 40px; padding: 9px 13px; font-size: .82rem; }
+    .hero-note { margin: 20px 0 0; color: var(--muted); font-size: .82rem; }
+
+    .portrait-area { position: relative; max-width: 430px; justify-self: end; width: 100%; }
+    .portrait-frame { position: relative; aspect-ratio: 4 / 4.8; overflow: hidden; border: 1px solid var(--line); border-radius: 24px; background: var(--surface-soft); box-shadow: var(--shadow); }
+    .portrait-frame::before { content: ''; position: absolute; inset: 14px; z-index: 2; border: 1px solid rgba(255,255,255,.33); border-radius: 15px; pointer-events: none; }
+    .portrait-frame img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 35%; }
+    .portrait-placeholder { position: absolute; inset: 0; display: grid; place-content: center; padding: 28px; text-align: center; color: var(--muted); }
+    .portrait-placeholder strong { display: block; margin-bottom: 6px; color: var(--ink); font-size: 1.15rem; }
+    .portrait-caption { position: absolute; right: -18px; bottom: 22px; z-index: 3; max-width: 220px; padding: 13px 16px; border: 1px solid var(--line); border-radius: 14px; background: var(--surface); box-shadow: var(--shadow); }
+    .portrait-caption strong { display: block; font-size: .84rem; }
+    .portrait-caption span { display: block; color: var(--muted); font-size: .73rem; }
+
+    .quick-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: -28px; position: relative; z-index: 2; }
+    .stat { padding: 22px; border: 1px solid var(--line); border-radius: 16px; background: var(--surface); }
+    .stat strong { display: block; font-size: clamp(1.35rem, 2.6vw, 2rem); font-weight: 800; letter-spacing: -.06em; line-height: 1.2; }
+    .stat span { display: block; margin-top: 7px; color: var(--muted); font-size: .82rem; }
+
+    section.section { padding-block: clamp(70px, 9vw, 112px); border-top: 1px solid var(--line); }
+    .section-heading { display: flex; align-items: end; justify-content: space-between; gap: 30px; margin-bottom: 34px; }
+    .section-kicker { margin-bottom: 8px; color: var(--blue); font: 500 .74rem var(--mono); letter-spacing: .11em; text-transform: uppercase; }
+    h2 { margin-bottom: 0; font-size: clamp(2rem, 4vw, 3.2rem); line-height: 1.1; letter-spacing: -.065em; font-weight: 800; }
+    .section-intro { max-width: 560px; margin: 14px 0 0; color: var(--muted); }
+    .section-index { color: var(--muted); font: .82rem var(--mono); white-space: nowrap; }
+
+    .about-grid { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(260px, .75fr); gap: clamp(32px, 7vw, 90px); }
+    .about-copy p { color: var(--muted); }
+    .about-copy p:first-child { color: var(--ink); font-size: 1.12rem; }
+    .principles { display: grid; gap: 12px; align-content: start; }
+    .principle { display: grid; grid-template-columns: 40px 1fr; gap: 14px; padding: 16px; border: 1px solid var(--line); border-radius: 15px; background: var(--surface); }
+    .principle-number { display: grid; place-items: center; width: 38px; height: 38px; border-radius: 11px; background: var(--surface-soft); color: var(--blue); font: .78rem var(--mono); }
+    .principle strong { display: block; margin: 1px 0 3px; font-size: .93rem; }
+    .principle span { display: block; color: var(--muted); font-size: .82rem; line-height: 1.55; }
+
+    .timeline { display: grid; gap: 18px; }
+    .experience-card { display: grid; grid-template-columns: 205px minmax(0, 1fr); gap: 24px; padding: 26px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+    .experience-date { color: var(--muted); font: .77rem/1.8 var(--mono); }
+    .experience-date strong { display: block; color: var(--blue); font-weight: 500; }
+    .experience-body h3 { margin-bottom: 4px; font-size: 1.25rem; letter-spacing: -.035em; }
+    .company { margin-bottom: 16px; color: var(--blue); font-weight: 800; }
+    .experience-body ul { margin: 0; padding-left: 20px; color: var(--muted); }
+    .experience-body li { margin-bottom: 8px; padding-left: 4px; }
+    .experience-body li:last-child { margin-bottom: 0; }
+    .leadership-note { margin-top: 18px; padding: 15px 17px; border-left: 3px solid var(--orange); border-radius: 0 10px 10px 0; background: var(--surface-soft); font-size: .91rem; }
+    .leadership-note strong { color: var(--ink); }
+
+    .project-toolbar { display: grid; grid-template-columns: minmax(200px, 1fr) auto; gap: 16px; align-items: center; margin-bottom: 22px; }
+    .search-wrap { position: relative; }
+    .search-wrap svg { position: absolute; top: 50%; left: 15px; width: 18px; height: 18px; transform: translateY(-50%); stroke: var(--muted); fill: none; stroke-width: 1.8; pointer-events: none; }
+    .project-search { width: 100%; min-height: 48px; padding: 12px 15px 12px 44px; border: 1px solid var(--line); border-radius: 12px; outline-offset: 2px; background: var(--surface); color: var(--ink); }
+    .project-search::placeholder { color: var(--muted); }
+    .filter-row { display: flex; flex-wrap: wrap; gap: 8px; }
+    .filter-button { padding: 9px 13px; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); color: var(--muted); font-size: .79rem; font-weight: 800; cursor: pointer; transition: background .18s, color .18s, border-color .18s; }
+    .filter-button[aria-pressed="true"] { background: var(--ink); color: var(--page); border-color: var(--ink); }
+    .results-line { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin: 0 0 16px; color: var(--muted); font: .75rem var(--mono); }
+    .project-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; align-items: stretch; }
+    .project-card { min-width: 0; display: flex; flex-direction: column; overflow: hidden; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease; }
+    .project-card:hover { transform: translateY(-3px); border-color: color-mix(in srgb, var(--blue) 45%, var(--line)); box-shadow: var(--shadow); }
+    .project-card[hidden] { display: none !important; }
+    .project-topline { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 18px 20px 0; }
+    .project-type { color: var(--blue); font: .69rem var(--mono); letter-spacing: .07em; text-transform: uppercase; }
+    .project-number { color: var(--muted); font: .74rem var(--mono); }
+    .project-card h3 { margin: 10px 20px 5px; font-size: 1.23rem; line-height: 1.3; letter-spacing: -.04em; }
+    .project-meta { margin: 0 20px 12px; color: var(--muted); font-size: .82rem; }
+    .project-summary { margin: 0 20px 16px; color: var(--muted); font-size: .9rem; }
+    .project-media { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 210px), 1fr)); gap: 8px; padding: 0 14px 14px; }
+    .media-item { position: relative; min-width: 0; aspect-ratio: 16 / 10; overflow: hidden; border: 1px solid var(--line); border-radius: 12px; background: #09111d; }
+    .media-item img { width: 100%; height: 100%; display: block; object-fit: cover; }
+    .photo-open { width: 100%; height: 100%; display: block; padding: 0; border: 0; background: #09111d; cursor: zoom-in; }
+    .photo-open img { transition: transform .3s ease; }
+    .photo-open:hover img { transform: scale(1.035); }
+    .media-item video { display: block; width: 100%; height: 100%; object-fit: contain; background: #05080d; }
+    .media-item .media-error-note { position: absolute; inset: auto 0 0; padding: 8px 10px; background: rgba(10,17,28,.94); color: #fff; font-size: .72rem; line-height: 1.45; }
+    .media-error-note a { display: inline-block; margin-top: 3px; color: #ffd18e; }
+    .media-error-note[hidden] { display: none; }
+    .no-media { min-height: 112px; display: grid; place-items: center; margin: 0 14px 14px; padding: 18px; border: 1px dashed var(--line); border-radius: 12px; color: var(--muted); font-size: .8rem; text-align: center; }
+    .project-footer { margin-top: auto; padding: 0 20px 20px; }
+    .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
+    .chips span { padding: 4px 9px; border: 1px solid var(--line); border-radius: 999px; color: var(--muted); font-size: .72rem; font-weight: 700; }
+    .project-details { border-top: 1px solid var(--line); }
+    .project-details summary { padding: 13px 0 0; color: var(--blue); font-size: .83rem; font-weight: 800; cursor: pointer; }
+    .details-content { padding-top: 12px; color: var(--muted); font-size: .82rem; }
+    .details-content p { margin: 0 0 10px; }
+    .details-content strong { color: var(--ink); }
+    .empty-state { grid-column: 1 / -1; padding: 34px; border: 1px dashed var(--line); border-radius: 16px; color: var(--muted); text-align: center; }
+
+    .skills-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+    .skill-card { padding: 21px; border: 1px solid var(--line); border-radius: 16px; background: var(--surface); }
+    .skill-card .skill-icon { width: 42px; height: 42px; display: grid; place-items: center; margin-bottom: 18px; border-radius: 12px; background: var(--surface-soft); color: var(--blue); font: .8rem var(--mono); }
+    .skill-card h3 { margin-bottom: 9px; font-size: 1rem; }
+    .skill-card p { margin-bottom: 0; color: var(--muted); font-size: .84rem; }
+
+    .education-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+    .education-card { padding: 22px; border: 1px solid var(--line); border-radius: 16px; background: var(--surface); }
+    .education-year { margin-bottom: 12px; color: var(--blue); font: .75rem var(--mono); }
+    .education-card h3 { margin-bottom: 8px; font-size: 1rem; line-height: 1.45; }
+    .education-card p { margin-bottom: 0; color: var(--muted); font-size: .84rem; }
+
+    .contact-panel { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 32px; padding: clamp(25px, 5vw, 54px); border: 1px solid var(--line); border-radius: 24px; background: var(--surface); box-shadow: var(--shadow); }
+    .contact-panel h2 { max-width: 650px; }
+    .contact-panel p { max-width: 560px; margin: 14px 0 0; color: var(--muted); }
+    .contact-actions { display: grid; gap: 10px; min-width: 200px; }
+    .contact-meta { display: flex; flex-wrap: wrap; gap: 10px 20px; margin-top: 25px; color: var(--muted); font-size: .85rem; }
+    .contact-meta a { color: var(--ink); }
+    #copyStatus { min-height: 1.4em; margin: 8px 0 0; color: var(--green); font-size: .78rem; }
+
+    .site-footer { padding: 28px 0 40px; color: var(--muted); font-size: .78rem; }
+    .footer-inner { display: flex; justify-content: space-between; align-items: center; gap: 20px; border-top: 1px solid var(--line); padding-top: 22px; }
+    .back-top { color: var(--muted); text-decoration: none; }
+    .back-top:hover { color: var(--ink); }
+
+    dialog { width: min(1100px, calc(100vw - 28px)); max-width: none; max-height: calc(100vh - 28px); padding: 12px; border: 1px solid var(--line); border-radius: 18px; background: var(--surface); color: var(--ink); box-shadow: var(--shadow); }
+    dialog::backdrop { background: rgba(3, 8, 17, .82); backdrop-filter: blur(5px); }
+    .lightbox-top { display: flex; justify-content: space-between; align-items: center; gap: 14px; padding: 2px 4px 10px; color: var(--muted); font-size: .8rem; }
+    .lightbox-close { padding: 7px 11px; border: 1px solid var(--line); border-radius: 9px; background: var(--surface-soft); cursor: pointer; }
+    .lightbox-image-wrap { display: grid; place-items: center; min-height: 160px; }
+    .lightbox-image-wrap img { display: block; max-width: 100%; max-height: calc(100vh - 105px); object-fit: contain; }
+    .toast { position: fixed; z-index: 100; bottom: 22px; left: 50%; transform: translate(-50%, 20px); padding: 12px 16px; border-radius: 12px; background: var(--ink); color: var(--page); box-shadow: var(--shadow); opacity: 0; pointer-events: none; transition: opacity .2s, transform .2s; font-size: .85rem; }
+    .toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+    @media (max-width: 950px) {
+      .nav-wrap { min-height: 70px; }
+      .nav-links { gap: 12px; }
+      .nav-links a { font-size: .78rem; }
+      .hero { gap: 42px; grid-template-columns: minmax(0, 1fr) minmax(260px, .75fr); }
+      .project-toolbar { grid-template-columns: 1fr; }
+      .skills-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 700px) {
+      html { scroll-padding-top: 125px; }
+      .container { width: min(100% - 30px, var(--content)); }
+      .nav-wrap { flex-wrap: wrap; gap: 10px; padding-block: 12px; }
+      .brand { margin-right: auto; }
+      .brand-mark { width: 36px; height: 36px; }
+      .nav-links { order: 3; width: 100%; justify-content: flex-start; overflow-x: auto; padding: 4px 0 2px; scrollbar-width: thin; }
+      .nav-links a { padding: 5px 0; }
+      .theme-toggle { width: 38px; height: 38px; }
+      .hero { grid-template-columns: 1fr; padding-top: 52px; gap: 40px; }
+      h1 { font-size: clamp(2.8rem, 14vw, 4.6rem); }
+      .portrait-area { justify-self: center; max-width: 360px; width: calc(100% - 12px); margin-right: 6px; }
+      .portrait-caption { right: -6px; }
+      .quick-stats { grid-template-columns: 1fr; margin-top: -28px; gap: 9px; }
+      .stat { padding: 16px 18px; display: flex; align-items: center; justify-content: space-between; gap: 15px; }
+      .stat span { margin-top: 0; text-align: right; }
+      .section-heading { align-items: start; }
+      .section-index { display: none; }
+      .about-grid { grid-template-columns: 1fr; gap: 26px; }
+      .experience-card { grid-template-columns: 1fr; gap: 10px; padding: 21px; }
+      .experience-date strong { display: inline; margin-right: 8px; }
+      .project-grid { grid-template-columns: 1fr; }
+      .project-media { grid-template-columns: repeat(auto-fit, minmax(min(100%, 190px), 1fr)); }
+      .education-grid { grid-template-columns: 1fr; }
+      .contact-panel { grid-template-columns: 1fr; }
+      .contact-actions { grid-template-columns: 1fr; min-width: 0; }
+      .footer-inner { align-items: flex-start; flex-direction: column; }
+    }
+    @media (max-width: 420px) {
+      .skills-grid { grid-template-columns: 1fr; }
+      .project-media { grid-template-columns: 1fr; }
+      .button-row .button { width: 100%; }
+      .filter-row { gap: 6px; }
+      .filter-button { padding: 8px 10px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
+    }
+  </style>
 </head>
 
 <body>
-<div class="wrap">
+  <a class="skip-link" href="#main">Skip to content</a>
 
-<nav aria-label="Main">
-  <a href="#about">About</a>
-  <a href="#experience">Experience</a>
-  <a href="#projects">Projects</a>
-  <a href="#skills">Skills</a>
-  <a href="#contact">Contact</a>
-</nav>
-
-<header class="hero">
-  <div>
-    <h1>Mohamed Yassine Fattoum</h1>
-
-    <p class="role">Software engineer Specialized in industrial machine vision</p>
-
-    <p class="lead">
-      I build the software that lets cameras decide whether a part is good:
-      C++ vision libraries, C# inspection software and AI models, taken from
-      feasibility study to validation on the customer's production line.
-      Based in Karlsruhe, open to new roles.
-    </p>
-
-    <div class="btns">
-      <a class="btn main" href="#projects">See my projects</a>
-      <a class="btn" href="mailto:mohamedyassinefattoum@gmail.com">Get in touch</a>
-    </div>
-  </div>
-
-  <div class="frame" role="img" aria-label="Portrait of Mohamed Yassine Fattoum">
-    <img
-      src="images/yassine_photo.jpg"
-      alt="Mohamed Yassine Fattoum"
-      fetchpriority="high"
-    >
-  </div>
-</header>
-
-<section id="about">
-  <h2>About</h2>
-
-  <div class="about">
-    <div>
-      <p>
-        I'm a software development engineer with three years of experience
-        in industrial machine vision. I trained as an electrical engineer at
-        ENSIT in Tunis and have worked at ARMA since my internship in 2023.
-      </p>
-
-      <p>
-        My projects span the automotive and textile sectors. I work across
-        the whole chain: optics and camera calibration, image-processing code,
-        PLC and database integration, and on-site acceptance with the customer.
-      </p>
-
-      <p>
-        I'm now looking for new professional challenges in Germany, where I'd
-        like to bring this end-to-end experience to a team building inspection
-        and automation systems.
-      </p>
-    </div>
-
-    <div class="facts">
-      <div>
-        <b>3 years</b>
-        <span>in industrial machine vision</span>
-      </div>
-
-      <div>
-        <b>6 inspection machines</b>
-        <span>delivered for automotive customers</span>
-      </div>
-
-      <div>
-        <b>4+ projects led</b>
-        <span>as technical lead, with interns supervised</span>
-      </div>
-
-      <div>
-        <b>4 languages</b>
-        <span>Arabic, English, French, German (B1)</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="experience">
-  <h2>Experience</h2>
-
-  <div class="job">
-    <div class="when">
-      Oct. 2023 – Sep. 2026<br>
-      Megrine, Tunis
-    </div>
-
-    <div>
-      <h3>Software Development Engineer</h3>
-      <p class="org">ARMA</p>
-
-      <ul>
-        <li>
-          Develop and improve an OpenCV-based C++ library for industrial
-          image processing: new features, performance optimisation,
-          Git/GitLab workflow with Agile Scrum.
-        </li>
-
-        <li>
-          Built a C# interface that integrates the vision library,
-          manages inspection scenarios and handles JSON serialisation.
-        </li>
-
-        <li>
-          Built a modular C/LabWindows™ CVI user interface (ATP platform)
-          to control test machines, coordinating image processing, PLCs,
-          MySQL databases and production equipment.
-        </li>
-
-        <li>
-          Integrated vision systems from Keyence, Cognex and Basler:
-          optical calibration, vision-tool setup, job files in
-          In-Sight Explorer and IV Navigator.
-        </li>
-
-        <li>
-          Developed AI modules in the XVision library with OpenCV DNN:
-          ONNX models for classification, segmentation and object detection,
-          integrated into C# inference pipelines.
-        </li>
-      </ul>
-
-      <div class="lead-note">
-        <b>Technical lead on 4+ industrial projects:</b>
-        team management, intern supervision, feasibility studies, support
-        through industrialisation and on-site functional validation
-        at the customer.
-      </div>
-    </div>
-  </div>
-
-  <div class="job">
-    <div class="when">
-      Feb. 2023 – Sep. 2023<br>
-      Megrine, Tunis
-    </div>
-
-    <div>
-      <h3>Software Engineering Intern</h3>
-      <p class="org">ARMA</p>
-
-      <ul>
-        <li>
-          Developed an OpenCV-based library for industrial image inspection:
-          acquisition, processing and inspection.
-        </li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<section id="projects">
-  <h2>Projects</h2>
-
-  <p class="meta" style="margin:-20px 0 28px;max-width:44em">
-    Six quality-inspection machines delivered for automotive customers.
-    Open a card for details. Orange text marks what you should replace
-    with your own facts and photos.
-  </p>
-
-  <div class="grid" id="grid"></div>
-</section>
-
-<section id="skills">
-  <h2>Skills</h2>
-
-  <div class="skills">
-    <div>
-      <h3>Programming</h3>
-      <p>C, C++, C#, Python, CMake, MySQL</p>
-    </div>
-
-    <div>
-      <h3>Vision and AI</h3>
-      <p>
-        OpenCV, OpenCV DNN, ONNX models, Cognex In-Sight Explorer,
-        Keyence IV Navigator, NI Vision Builder, LabVIEW
-      </p>
-    </div>
-
-    <div>
-      <h3>Tools and practice</h3>
-      <p>
-        Visual Studio, VS Code, LabWindows/CVI, Git, GitLab,
-        Agile Scrum, CI/CD
-      </p>
-    </div>
-
-    <div>
-      <h3>Hardware and systems</h3>
-      <p>Cognex, Keyence and Basler cameras, PLCs, Windows, Linux</p>
-    </div>
-  </div>
-</section>
-
-<section id="education">
-  <h2>Education</h2>
-
-  <div class="edu">
-    <div class="when">2020 – 2023</div>
-    <p>
-      <b>Engineering Degree in Electrical Engineering</b><br>
-      National School of Engineering Sciences of Tunis (ENSIT)
-    </p>
-
-    <div class="when">2018 – 2020</div>
-    <p>
-      <b>Preparatory Engineering Studies</b><br>
-      Preparatory Institute for Engineering Studies of El Manar (IPEIEM)
-    </p>
-
-    <div class="when">2018</div>
-    <p>
-      <b>Baccalaureate in Technical Sciences</b><br>
-      Ibn Abi Dhief High School, Manouba
-    </p>
-  </div>
-</section>
-
-<section id="contact" class="contact">
-  <h2>Let's talk</h2>
-
-  <ul class="ci">
-    <li>
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <rect x="3" y="5" width="18" height="14" rx="2"/>
-        <path d="m3 7 9 6 9-6"/>
-      </svg>
-      <a href="mailto:mohamedyassinefattoum@gmail.com">
-        mohamedyassinefattoum@gmail.com
+  <header class="site-header" id="top">
+    <div class="container nav-wrap">
+      <a class="brand" href="#top" aria-label="Mohamed Yassine Fattoum, home">
+        <span class="brand-mark" aria-hidden="true">YF</span>
+        <span class="brand-copy">
+          <strong>Mohamed Yassine Fattoum</strong>
+          <span>Machine Vision · Software</span>
+        </span>
       </a>
-    </li>
-
-    <li>
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/>
-        <circle cx="12" cy="10" r="2.5"/>
-      </svg>
-      <span>Scheffelstrasse 44B, Karlsruhe, Germany</span>
-    </li>
-
-    <li>
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/>
-      </svg>
-      <a href="tel:+491796947902">+49 179 6947902</a>
-    </li>
-
-    <li>
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <rect x="2" y="5" width="20" height="14" rx="2"/>
-        <circle cx="8" cy="11" r="2"/>
-        <path d="M5 16c.5-2 5.5-2 6 0M14 10h5M14 14h4"/>
-      </svg>
-      <span>Driving licence: Class B</span>
-    </li>
-
-    <li>
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <rect x="3" y="3" width="18" height="18" rx="3"/>
-        <path d="M8 11v5M8 8v.01M12 16v-5M12 13a3 3 0 0 1 6 0v3"/>
-      </svg>
-      <a href="https://linkedin.com/in/mohamed-yassine-fattoum">
-        linkedin.com/in/mohamed-yassine-fattoum
-      </a>
-    </li>
-  </ul>
-</section>
-
-<footer>© 2026 Mohamed Yassine Fattoum</footer>
-
-</div>
-
-<script>
-const P = [
-  {
-    t: "FlexiBowl machine vision & robotics",
-    c: "Aptiv, Morocco",
-    d: "Mar. – Jul. 2026",
-    s: ["C++", "C#", "OpenCV", "Robotics"],
-    p: "Quality inspection machine combining machine vision with a FlexiBowl flexible feeder and robotics."
-  },
-  {
-    t: "Seat heating resistance wires",
-    c: "Lear, Bizerte, Tunisia",
-    d: "Sep. 2025 – Feb. 2026",
-    s: ["C++", "OpenCV", "PLC", "MySQL"],
-    p: "Quality inspection machine for the resistance wires of automotive seat heating."
-  },
-  {
-    t: "LCV Carrier",
-    c: "Lacroix, Zaghouan, Tunisia",
-    d: "Sep. – Dec. 2025",
-    s: ["C++", "OpenCV", "C#"],
-    p: "Quality inspection machine for an LCV carrier part."
-  },
-  {
-    t: "LED tail light, Toyota C-HR 2025",
-    c: "Lacroix, Zaghouan, Tunisia",
-    d: "May – Jul. 2025",
-    s: ["C++", "OpenCV", "Vision tools"],
-    p: "Quality inspection machine for the LED tail light of the 2025 Toyota C-HR."
-  },
-  {
-    t: "Automotive connector",
-    c: "Aptiv, Morocco",
-    d: "2024",
-    s: ["C++", "OpenCV", "LabWindows/CVI"],
-    p: "Quality inspection machine for an automotive connector."
-  },
-  {
-    t: "Automatic gearbox housing",
-    c: "Etoggle / PSA / Valeo, Tunisia",
-    d: "Nov. 2023 – Feb. 2024",
-    s: ["C++", "OpenCV", "Cognex"],
-    p: "Quality inspection machine for an automatic gearbox housing."
-  }
-];
-
-/*
- * MEDIA FILES
- *
- * Project order:
- * 0. FlexiBowl
- * 1. Seat heating resistance wires / LineUp
- * 2. LCV Carrier
- * 3. LED tail light
- * 4. Automotive connector / W46
- * 5. Automatic gearbox housing
- *
- * Image files are stored in the "image" folder.
- * Video files are stored in the "videos" folder.
- */
-const M = [
-  {
-    cover: "images/flexiBowl.jpeg",
-    photos: [],
-    videos: []
-  },
-  {
-    cover: "images/lineUp.png",
-    photos: [
-      "images/lineUp2.jpeg"
-    ],
-    videos: [
-      "videos/line.mp4"
-    ]
-  },
-  {
-    cover: "images/lcv.jpeg",
-    photos: [],
-    videos: []
-  },
-  {
-    cover: null,
-    photos: [],
-    videos: [
-      "videos/testLed.mp4"
-    ]
-  },
-  {
-    cover: "images/w46.jpeg",
-    photos: [],
-    videos: []
-  },
-  {
-    cover: "images/psa.png",
-    photos: [],
-    videos: []
-  }
-];
-
-/* ------------------------------------------------------------------
-   PROJECT COVER
------------------------------------------------------------------- */
-
-const cover = x => {
-  if (x.m.cover) {
-    return `
-      <div class="shot">
-        <img
-          src="${x.m.cover}"
-          alt="${x.t}"
-          loading="lazy"
-        >
-      </div>
-    `;
-  }
-
-  /*
-   * The LED project has no separate image.
-   * Use its video as the project preview instead.
-   */
-  if (x.m.videos.length > 0) {
-    return `
-      <div class="shot">
-        <video
-          controls
-          preload="metadata"
-          playsinline
-          aria-label="${x.t} project video"
-        >
-          <source src="${x.m.videos[0]}" type="videos/mp4">
-          Your browser does not support HTML video.
-        </video>
-      </div>
-    `;
-  }
-
-  return `
-    <div class="shot">
-      <span>Project photo<br>(add a photo here)</span>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="#about">About</a>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#education">Education</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to dark theme" aria-pressed="false" title="Switch theme">☾</button>
     </div>
-  `;
-};
+  </header>
 
-/* ------------------------------------------------------------------
-   PROJECT PHOTOS AND VIDEOS
------------------------------------------------------------------- */
+  <main id="main">
+    <div class="container">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-content">
+          <p class="eyebrow"><span class="status-dot" aria-hidden="true"></span> Open to opportunities · Karlsruhe, Germany</p>
+          <h1 id="hero-title">Turning images into <span class="accent">industrial decisions.</span></h1>
+          <p class="hero-role">Software Engineer · Industrial Machine Vision</p>
+          <p class="hero-copy">I build the software that helps production lines inspect parts reliably — from C++ image-processing libraries and C# inspection interfaces to AI inference and on-site validation.</p>
+          <div class="button-row">
+            <a class="button primary" href="#projects">Explore selected projects <span aria-hidden="true">↘</span></a>
+            <a class="button" href="mailto:mohamedyassinefattoum@gmail.com">Contact me <span aria-hidden="true">↗</span></a>
+            <a class="button" href="https://www.linkedin.com/in/mohamed-yassine-fattoum/" target="_blank" rel="noopener noreferrer">LinkedIn <span aria-hidden="true">↗</span></a>
+          </div>
+          <p class="hero-note">C++ / OpenCV · C# · Computer Vision · AI · Industrial Automation</p>
+        </div>
 
-const media = x => {
-  const photos = x.m.photos
-    .map(src => `
-      <button
-        class="ph"
-        type="button"
-        data-src="${src}"
-        aria-label="Enlarge photo for ${x.t}"
-      >
-        <img
-          src="${src}"
-          alt="${x.t}"
-          loading="lazy"
-        >
-      </button>
-    `)
-    .join("");
+        <div class="portrait-area">
+          <div class="portrait-frame">
+            <div class="portrait-placeholder" id="portraitFallback">
+              <strong>Mohamed Yassine Fattoum</strong>
+              <span>Add your portrait at <code>images/yassine_photo.jpg</code>.</span>
+            </div>
+            <img id="portrait" src="images/yassine_photo.jpg" alt="Portrait of Mohamed Yassine Fattoum" fetchpriority="high">
+          </div>
+          <div class="portrait-caption">
+            <strong>Industrial machine vision</strong>
+            <span>From feasibility to production-line validation</span>
+          </div>
+        </div>
+      </section>
 
-  const videos = x.m.videos
-    .map(src => `
-      <video
-        controls
-        preload="metadata"
-        playsinline
-      >
-        <source src="${src}" type="videos/mp4">
-        Your browser does not support HTML video.
-      </video>
-    `)
-    .join("");
-
-  /*
-   * Do not display empty gallery or video placeholders
-   * when a project has no additional media.
-   */
-  if (!photos && !videos) {
-    return "";
-  }
-
-  return `
-    <div class="media">
-      ${photos ? `<div class="mg">${photos}</div>` : ""}
-      ${videos ? `<div class="mv">${videos}</div>` : ""}
-    </div>
-  `;
-};
-
-/* ------------------------------------------------------------------
-   IMAGE LIGHTBOX
------------------------------------------------------------------- */
-
-const dlg = document.createElement("dialog");
-
-dlg.innerHTML = '<img alt="Expanded project photo">';
-
-document.body.appendChild(dlg);
-
-dlg.addEventListener("click", () => {
-  dlg.close();
-});
-
-document.addEventListener("click", e => {
-  const button = e.target.closest(".ph");
-
-  if (!button) {
-    return;
-  }
-
-  const image = dlg.querySelector("img");
-
-  image.src = button.dataset.src;
-  image.alt = button.querySelector("img")?.alt || "Project photo";
-
-  dlg.showModal();
-});
-
-/* ------------------------------------------------------------------
-   RENDER PROJECT CARDS
------------------------------------------------------------------- */
-
-const grid = document.getElementById("grid");
-
-P.forEach((x, i) => {
-  x.m = M[i];
-
-  const article = document.createElement("article");
-
-  article.className = "card";
-
-  article.innerHTML = `
-    ${cover(x)}
-
-    <div class="body">
-
-      <h3>${x.t}</h3>
-
-      <p class="meta">${x.c} · ${x.d}</p>
-
-      <p style="margin:0">${x.p}</p>
-
-      <div class="chips">
-        ${x.s.map(skill => `<span>${skill}</span>`).join("")}
+      <div class="quick-stats" aria-label="Career highlights">
+        <div class="stat"><strong>3 years</strong><span>Industrial machine vision</span></div>
+        <div class="stat"><strong>6 machines</strong><span>Automotive inspection systems delivered</span></div>
+        <div class="stat"><strong>4+ projects</strong><span>Technical leadership and intern supervision</span></div>
       </div>
 
-      <details>
-        <summary>Project details</summary>
+      <section class="section" id="about" aria-labelledby="about-title">
+        <div class="section-heading">
+          <div><p class="section-kicker">01 / Profile</p><h2 id="about-title">Engineering that reaches the factory floor.</h2></div>
+          <span class="section-index">WHO I AM</span>
+        </div>
+        <div class="about-grid">
+          <div class="about-copy">
+            <p>I am a software development engineer focused on industrial machine vision, with experience delivering inspection systems for automotive and textile applications.</p>
+            <p>My work spans the full engineering chain: camera and optics setup, image-processing algorithms, C++ libraries, C# interfaces, PLC/database integration, and functional validation at customer sites. I also integrate ONNX models with OpenCV DNN for classification, segmentation and object-detection tasks.</p>
+            <p>After working on industrial inspection projects at ARMA, I am now based in Karlsruhe and looking for opportunities in Germany where software engineering, computer vision and automation meet.</p>
+          </div>
+          <div class="principles" aria-label="Working approach">
+            <div class="principle"><span class="principle-number">01</span><div><strong>Practical computer vision</strong><span>Algorithms designed around real parts, production constraints and inspection needs.</span></div></div>
+            <div class="principle"><span class="principle-number">02</span><div><strong>End-to-end integration</strong><span>Vision software connected to interfaces, PLCs, databases and factory equipment.</span></div></div>
+            <div class="principle"><span class="principle-number">03</span><div><strong>Delivery and collaboration</strong><span>Feasibility studies, technical coordination, intern mentoring and customer validation.</span></div></div>
+          </div>
+        </div>
+      </section>
 
-        ${media(x)}
+      <section class="section" id="experience" aria-labelledby="experience-title">
+        <div class="section-heading">
+          <div><p class="section-kicker">02 / Experience</p><h2 id="experience-title">From code to commissioning.</h2></div>
+          <span class="section-index">CAREER</span>
+        </div>
+        <div class="timeline">
+          <article class="experience-card">
+            <div class="experience-date"><strong>Oct 2023 – Sep 2026</strong>Megrine, Tunisia</div>
+            <div class="experience-body">
+              <h3>Software Development Engineer</h3>
+              <p class="company">ARMA</p>
+              <ul>
+                <li>Developed and optimised an OpenCV-based C++ library for industrial image processing and inspection, using Git/GitLab and an Agile Scrum workflow.</li>
+                <li>Built C# interfaces around the vision library to configure inspection scenarios and handle JSON serialisation.</li>
+                <li>Contributed to the C/LabWindows CVI ATP platform for coordinating test machines, PLCs, MySQL databases and production equipment.</li>
+                <li>Integrated and configured Keyence, Cognex and Basler vision systems, including optical calibration and job setup with In-Sight Explorer and IV Navigator.</li>
+                <li>Integrated ONNX classification, segmentation and object-detection models through OpenCV DNN into C# inference pipelines.</li>
+              </ul>
+              <div class="leadership-note"><strong>Technical leadership:</strong> led technical work across 4+ industrial projects, supervised interns, assessed feasibility, supported industrialisation and performed functional validation at customer sites.</div>
+            </div>
+          </article>
+          <article class="experience-card">
+            <div class="experience-date"><strong>Feb 2023 – Sep 2023</strong>Megrine, Tunisia</div>
+            <div class="experience-body">
+              <h3>Software Engineering Intern</h3>
+              <p class="company">ARMA</p>
+              <ul><li>Developed an OpenCV-based industrial image-inspection library covering image acquisition, processing and inspection functions.</li></ul>
+            </div>
+          </article>
+        </div>
+      </section>
 
-        <dl>
-          <dt>The challenge</dt>
-          <dd class="todo">
-            What defect or measurement had to be detected, and what made it
-            hard (reflections, cycle time, tolerances)?
-          </dd>
+      <section class="section" id="projects" aria-labelledby="projects-title">
+        <div class="section-heading">
+          <div><p class="section-kicker">03 / Selected work</p><h2 id="projects-title">Projects built for real-world inspection.</h2><p class="section-intro">Explore the applications, technologies and available media. Use the search and filters to find a specific project. Images open in a larger view; videos include playback controls.</p></div>
+          <span class="section-index">PORTFOLIO</span>
+        </div>
 
-          <dt>My role</dt>
-          <dd>
-            Technical lead or developer: vision software, tool setup,
-            integration with PLCs and production equipment, on-site validation.
-            <span class="todo">Adjust to this project.</span>
-          </dd>
+        <div class="project-toolbar">
+          <label class="search-wrap">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8"></circle><path d="m16 16 5 5"></path></svg>
+            <input class="project-search" id="projectSearch" type="search" placeholder="Search projects, clients or technologies…" autocomplete="off" aria-label="Search projects">
+          </label>
+          <div class="filter-row" role="group" aria-label="Filter projects">
+            <button class="filter-button" type="button" data-filter="all" aria-pressed="true">All projects</button>
+            <button class="filter-button" type="button" data-filter="automotive" aria-pressed="false">Automotive</button>
+            <button class="filter-button" type="button" data-filter="robotics" aria-pressed="false">Robotics</button>
+            <button class="filter-button" type="button" data-filter="vision" aria-pressed="false">Vision & AI</button>
+          </div>
+        </div>
+        <p class="results-line"><span id="projectCount" aria-live="polite">6 projects</span><span>Images and videos load from this repository</span></p>
+        <div class="project-grid" id="projectGrid"></div>
+        <noscript><p class="empty-state">JavaScript must be enabled to display the interactive project gallery.</p></noscript>
+      </section>
 
-          <dt>Solution</dt>
-          <dd class="todo">
-            Camera and lighting setup, algorithms or AI model used,
-            how results reach the operator.
-          </dd>
+      <section class="section" id="skills" aria-labelledby="skills-title">
+        <div class="section-heading">
+          <div><p class="section-kicker">04 / Toolkit</p><h2 id="skills-title">Tools I work with.</h2></div>
+          <span class="section-index">SKILLS</span>
+        </div>
+        <div class="skills-grid">
+          <article class="skill-card"><span class="skill-icon" aria-hidden="true">{ }</span><h3>Software development</h3><p>C, C++, C#, Python, CMake, JSON serialisation, reusable libraries and performance optimisation.</p></article>
+          <article class="skill-card"><span class="skill-icon" aria-hidden="true">◉</span><h3>Computer vision & AI</h3><p>OpenCV, OpenCV DNN, ONNX models, image processing, classification, segmentation and object detection.</p></article>
+          <article class="skill-card"><span class="skill-icon" aria-hidden="true">⌘</span><h3>Industrial vision systems</h3><p>Cognex In-Sight Explorer, Keyence IV Navigator, Basler cameras, optics, calibration and lighting setup.</p></article>
+          <article class="skill-card"><span class="skill-icon" aria-hidden="true">↔</span><h3>Automation & delivery</h3><p>PLC integration, MySQL, LabWindows/CVI, Git/GitLab, Agile Scrum, CI/CD, Windows and Linux.</p></article>
+        </div>
+      </section>
 
-          <dt>Result</dt>
-          <dd class="todo">
-            Add a measurable outcome: detection rate, cycle time, defects caught.
-          </dd>
-        </dl>
-      </details>
+      <section class="section" id="education" aria-labelledby="education-title">
+        <div class="section-heading">
+          <div><p class="section-kicker">05 / Education</p><h2 id="education-title">Engineering foundations.</h2></div>
+          <span class="section-index">EDUCATION</span>
+        </div>
+        <div class="education-grid">
+          <article class="education-card"><p class="education-year">2020 – 2023</p><h3>Engineering Degree in Electrical Engineering</h3><p>National School of Engineering Sciences of Tunis (ENSIT)</p></article>
+          <article class="education-card"><p class="education-year">2018 – 2020</p><h3>Preparatory Engineering Studies</h3><p>Preparatory Institute for Engineering Studies of El Manar (IPEIEM)</p></article>
+          <article class="education-card"><p class="education-year">2018</p><h3>Baccalaureate in Technical Sciences</h3><p>Ibn Abi Dhief High School, Manouba, Tunisia</p></article>
+        </div>
+      </section>
 
+      <section class="section" id="contact" aria-labelledby="contact-title">
+        <div class="contact-panel">
+          <div>
+            <p class="section-kicker">06 / Contact</p>
+            <h2 id="contact-title">Have a machine-vision challenge?</h2>
+            <p>I am interested in software engineering, computer vision and industrial automation opportunities in Germany. Send me a message and let's discuss your project or team.</p>
+            <div class="contact-meta">
+              <span>Based in Karlsruhe, Germany</span>
+              <a href="tel:+491796947902">+49 179 6947902</a>
+              <a href="https://www.linkedin.com/in/mohamed-yassine-fattoum/" target="_blank" rel="noopener noreferrer">LinkedIn profile ↗</a>
+            </div>
+          </div>
+          <div class="contact-actions">
+            <a class="button primary" href="mailto:mohamedyassinefattoum@gmail.com">mohamedyassinefattoum@gmail.com ↗</a>
+            <button class="button" type="button" id="copyEmail">Copy email address</button>
+            <p id="copyStatus" role="status" aria-live="polite"></p>
+          </div>
+        </div>
+      </section>
     </div>
-  `;
+  </main>
 
-  grid.appendChild(article);
-});
-</script>
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <span>© <span id="currentYear">2026</span> Mohamed Yassine Fattoum · Built with HTML, CSS and JavaScript.</span>
+      <a class="back-top" href="#top">Back to top ↑</a>
+    </div>
+  </footer>
 
+  <dialog id="lightbox" aria-label="Expanded project image">
+    <div class="lightbox-top"><span id="lightboxCaption">Project image</span><button class="lightbox-close" id="closeLightbox" type="button">Close ✕</button></div>
+    <div class="lightbox-image-wrap"><img id="lightboxImage" alt="Expanded project image"></div>
+  </dialog>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    'use strict';
+
+    // Keep these paths identical to the names and capitalisation in the GitHub repository.
+    // HTML video MIME type must be "video/mp4", not "videos/mp4".
+    const projects = [
+      {
+        title: 'FlexiBowl Machine Vision & Robotics', client: 'Aptiv, Morocco', date: 'Mar – Jul 2026',
+        type: 'Robotics', categories: ['robotics', 'automotive', 'vision'],
+        description: 'Industrial inspection project combining machine vision with a FlexiBowl flexible feeder and robotics.',
+        contribution: 'Machine-vision software and system integration for an automated inspection application.',
+        technologies: ['C++', 'C#', 'OpenCV', 'Robotics'],
+        media: [{ type: 'image', src: 'images/flexiBowl.jpeg', alt: 'FlexiBowl machine vision and robotics project' }]
+      },
+      {
+        title: 'Seat Heating Resistance Wires', client: 'Lear, Bizerte, Tunisia', date: 'Sep 2025 – Feb 2026',
+        type: 'Automotive inspection', categories: ['automotive', 'vision'],
+        description: 'Quality-inspection machine for resistance wires used in automotive seat-heating systems.',
+        contribution: 'Vision inspection development with links to industrial control and production data.',
+        technologies: ['C++', 'OpenCV', 'PLC', 'MySQL'],
+        media: [
+          { type: 'image', src: 'images/lineUp.png', alt: 'Seat-heating resistance wire inspection system' },
+          { type: 'image', src: 'images/lineUp2.jpeg', alt: 'Additional view of the seat-heating inspection project' },
+          { type: 'video', src: 'videos/line.mp4', alt: 'Video of the seat-heating resistance wire inspection project' }
+        ]
+      },
+      {
+        title: 'LCV Carrier', client: 'Lacroix, Zaghouan, Tunisia', date: 'Sep – Dec 2025',
+        type: 'Automotive inspection', categories: ['automotive', 'vision'],
+        description: 'Quality-inspection machine for an LCV carrier component.',
+        contribution: 'Industrial machine-vision software for component quality inspection.',
+        technologies: ['C++', 'OpenCV', 'C#'],
+        media: [{ type: 'image', src: 'images/lcv.jpeg', alt: 'LCV Carrier inspection project' }]
+      },
+      {
+        title: 'LED Tail Light — Toyota C-HR 2025', client: 'Lacroix, Zaghouan, Tunisia', date: 'May – Jul 2025',
+        type: 'Automotive inspection', categories: ['automotive', 'vision'],
+        description: 'Quality-inspection application for the LED tail light of the 2025 Toyota C-HR.',
+        contribution: 'Machine-vision inspection project. The video below is available directly with in-page playback controls.',
+        technologies: ['C++', 'OpenCV', 'Vision tools'],
+        media: [{ type: 'video', src: 'videos/testLed.mp4', alt: 'LED tail-light inspection project video' }]
+      },
+      {
+        title: 'Automotive Connector', client: 'Aptiv, Morocco', date: '2024',
+        type: 'Automotive inspection', categories: ['automotive', 'vision'],
+        description: 'Quality-inspection machine for an automotive connector.',
+        contribution: 'Industrial image-processing and inspection application within an automated test environment.',
+        technologies: ['C++', 'OpenCV', 'LabWindows/CVI'],
+        media: [{ type: 'image', src: 'images/w46.jpeg', alt: 'Automotive connector inspection project' }]
+      },
+      {
+        title: 'Automatic Gearbox Housing', client: 'Etoggle / PSA / Valeo, Tunisia', date: 'Nov 2023 – Feb 2024',
+        type: 'Automotive inspection', categories: ['automotive', 'vision'],
+        description: 'Quality-inspection machine for an automatic gearbox housing.',
+        contribution: 'Vision-system development for an automotive manufacturing application.',
+        technologies: ['C++', 'OpenCV', 'Cognex'],
+        media: [{ type: 'image', src: 'images/psa.png', alt: 'Automatic gearbox housing inspection project' }]
+      }
+    ];
+
+    const projectGrid = document.getElementById('projectGrid');
+    const searchInput = document.getElementById('projectSearch');
+    const projectCount = document.getElementById('projectCount');
+    const filterButtons = Array.from(document.querySelectorAll('[data-filter]'));
+    let activeFilter = 'all';
+
+    function escapeHtml(value) {
+      return String(value).replace(/[&<>"']/g, char => ({
+        '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+      })[char]);
+    }
+
+    function renderMedia(item, projectTitle) {
+      const src = escapeHtml(item.src);
+      const alt = escapeHtml(item.alt || projectTitle);
+      const safeTitle = escapeHtml(projectTitle);
+      if (item.type === 'video') {
+        return `
+          <div class="media-item">
+            <video controls preload="metadata" playsinline webkit-playsinline aria-label="${alt}" title="${alt}">
+              <source src="${src}" type="video/mp4">
+              Your browser cannot play this video. <a href="${src}" target="_blank" rel="noopener noreferrer">Open the video file</a>.
+            </video>
+            <p class="media-error-note" hidden>Video could not be played. Check that the file exists, the path uses the correct capitalisation, and the MP4 uses a browser-supported codec (H.264/AAC).<br><a href="${src}" target="_blank" rel="noopener noreferrer">Open video file ↗</a></p>
+          </div>`;
+      }
+      return `
+        <div class="media-item">
+          <button class="photo-open" type="button" data-full-src="${src}" data-caption="${safeTitle}" aria-label="Enlarge photo: ${alt}">
+            <img src="${src}" alt="${alt}" loading="lazy" decoding="async">
+          </button>
+          <p class="media-error-note" hidden>Image not found. Check the file name, extension, capitalisation and folder path.<br><a href="${src}" target="_blank" rel="noopener noreferrer">Try opening image ↗</a></p>
+        </div>`;
+    }
+
+    function renderProjects() {
+      projectGrid.innerHTML = projects.map((project, index) => `
+        <article class="project-card" data-categories="${project.categories.join(' ')}" data-search="${escapeHtml([project.title, project.client, project.date, project.description, project.technologies.join(' ')].join(' ').toLowerCase())}">
+          <div class="project-topline"><span class="project-type">${escapeHtml(project.type)}</span><span class="project-number">PROJECT ${String(index + 1).padStart(2, '0')}</span></div>
+          <h3>${escapeHtml(project.title)}</h3>
+          <p class="project-meta">${escapeHtml(project.client)} <span aria-hidden="true">·</span> ${escapeHtml(project.date)}</p>
+          <p class="project-summary">${escapeHtml(project.description)}</p>
+          <div class="project-media" aria-label="Photos and videos for ${escapeHtml(project.title)}">
+            ${project.media.length ? project.media.map(item => renderMedia(item, project.title)).join('') : '<p class="no-media">No project media has been added yet.</p>'}
+          </div>
+          <div class="project-footer">
+            <div class="chips" aria-label="Technologies">${project.technologies.map(tech => `<span>${escapeHtml(tech)}</span>`).join('')}</div>
+            <details class="project-details">
+              <summary>Project overview</summary>
+              <div class="details-content"><p><strong>Application</strong><br>${escapeHtml(project.description)}</p><p><strong>Engineering scope</strong><br>${escapeHtml(project.contribution)}</p><p><strong>Technologies</strong><br>${escapeHtml(project.technologies.join(' · '))}</p></div>
+            </details>
+          </div>
+        </article>
+      `).join('');
+
+      attachMediaHandlers();
+      applyProjectFilters();
+    }
+
+    function applyProjectFilters() {
+      const query = searchInput.value.trim().toLowerCase();
+      const cards = Array.from(projectGrid.querySelectorAll('.project-card'));
+      let shown = 0;
+      cards.forEach(card => {
+        const categories = (card.dataset.categories || '').split(' ');
+        const searchableText = card.dataset.search || '';
+        const matchesFilter = activeFilter === 'all' || categories.includes(activeFilter);
+        const matchesQuery = !query || searchableText.includes(query);
+        const visible = matchesFilter && matchesQuery;
+        card.hidden = !visible;
+        if (visible) shown++;
+      });
+      const oldEmpty = projectGrid.querySelector('.empty-state');
+      if (oldEmpty) oldEmpty.remove();
+      if (shown === 0) {
+        projectGrid.insertAdjacentHTML('beforeend', '<div class="empty-state">No projects match that search. Try another keyword or select “All projects”.</div>');
+      }
+      projectCount.textContent = `${shown} ${shown === 1 ? 'project' : 'projects'}`;
+    }
+
+    function attachMediaHandlers() {
+      projectGrid.querySelectorAll('.photo-open img').forEach(img => {
+        img.addEventListener('error', () => {
+          const note = img.closest('.media-item')?.querySelector('.media-error-note');
+          if (note) note.hidden = false;
+          img.alt = `${img.alt} (file could not be loaded)`;
+          img.style.display = 'none';
+        }, { once: true });
+      });
+      projectGrid.querySelectorAll('video').forEach(video => {
+        video.addEventListener('error', () => {
+          const note = video.closest('.media-item')?.querySelector('.media-error-note');
+          if (note) note.hidden = false;
+        });
+      });
+      projectGrid.querySelectorAll('.photo-open').forEach(button => {
+        button.addEventListener('click', () => openLightbox(button.dataset.fullSrc, button.dataset.caption));
+      });
+    }
+
+    searchInput.addEventListener('input', applyProjectFilters);
+    filterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        activeFilter = button.dataset.filter;
+        filterButtons.forEach(item => item.setAttribute('aria-pressed', String(item === button)));
+        applyProjectFilters();
+      });
+    });
+
+    // Accessible image lightbox: close button, backdrop click and Escape are supported.
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImage = document.getElementById('lightboxImage');
+    const lightboxCaption = document.getElementById('lightboxCaption');
+    function openLightbox(src, caption) {
+      if (!src) return;
+      lightboxImage.src = src;
+      lightboxImage.alt = caption || 'Expanded project image';
+      lightboxCaption.textContent = caption || 'Project image';
+      if (typeof lightbox.showModal === 'function') lightbox.showModal();
+      else window.open(src, '_blank', 'noopener');
+    }
+    document.getElementById('closeLightbox').addEventListener('click', () => lightbox.close());
+    lightbox.addEventListener('click', event => { if (event.target === lightbox) lightbox.close(); });
+    lightbox.addEventListener('close', () => { lightboxImage.removeAttribute('src'); });
+
+    // Portrait fallback if the photo path is wrong or the file has not been uploaded.
+    const portrait = document.getElementById('portrait');
+    const portraitFallback = document.getElementById('portraitFallback');
+    function showPortraitFallback() {
+      portrait.hidden = true;
+      portraitFallback.style.zIndex = '1';
+    }
+    portrait.addEventListener('error', showPortraitFallback);
+    portrait.addEventListener('load', () => { portraitFallback.style.display = 'none'; });
+    if (portrait.complete && portrait.naturalWidth === 0) showPortraitFallback();
+
+    // Theme toggle persists the visitor's choice on this browser.
+    const themeToggle = document.getElementById('themeToggle');
+    function setTheme(theme) {
+      document.documentElement.dataset.theme = theme;
+      const dark = theme === 'dark';
+      themeToggle.textContent = dark ? '☀' : '☾';
+      themeToggle.setAttribute('aria-pressed', String(dark));
+      themeToggle.setAttribute('aria-label', dark ? 'Switch to light theme' : 'Switch to dark theme');
+      themeToggle.title = dark ? 'Switch to light theme' : 'Switch to dark theme';
+      document.querySelector('meta[name="theme-color"]').content = dark ? '#0c1422' : '#f4f7fb';
+    }
+    let savedTheme = null;
+    try { savedTheme = localStorage.getItem('portfolio-theme'); } catch (_) { /* Storage can be disabled. */ }
+    setTheme(savedTheme === 'dark' || savedTheme === 'light' ? savedTheme : 'light');
+    themeToggle.addEventListener('click', () => {
+      const nextTheme = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+      setTheme(nextTheme);
+      try { localStorage.setItem('portfolio-theme', nextTheme); } catch (_) { /* Theme still works without storage. */ }
+    });
+
+    // Copy-to-clipboard with a fallback for browsers without Clipboard API access.
+    const copyEmailButton = document.getElementById('copyEmail');
+    const copyStatus = document.getElementById('copyStatus');
+    const toast = document.getElementById('toast');
+    let toastTimeout;
+    function showToast(message) {
+      toast.textContent = message;
+      toast.classList.add('show');
+      window.clearTimeout(toastTimeout);
+      toastTimeout = window.setTimeout(() => toast.classList.remove('show'), 2600);
+    }
+    copyEmailButton.addEventListener('click', async () => {
+      const email = 'mohamedyassinefattoum@gmail.com';
+      try {
+        if (navigator.clipboard && window.isSecureContext) {
+          await navigator.clipboard.writeText(email);
+        } else {
+          const temporary = document.createElement('textarea');
+          temporary.value = email;
+          temporary.setAttribute('readonly', '');
+          temporary.style.position = 'fixed';
+          temporary.style.opacity = '0';
+          document.body.appendChild(temporary);
+          temporary.select();
+          const copied = document.execCommand('copy');
+          temporary.remove();
+          if (!copied) throw new Error('Clipboard unavailable');
+        }
+        copyStatus.textContent = 'Email address copied.';
+        showToast('Email address copied to clipboard');
+      } catch (_) {
+        copyStatus.textContent = 'Please copy the email address from the email link above.';
+        showToast('Clipboard access is unavailable in this browser');
+      }
+    });
+
+    document.getElementById('currentYear').textContent = new Date().getFullYear();
+    renderProjects();
+  </script>
 </body>
 </html>
